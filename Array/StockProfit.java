@@ -3,19 +3,26 @@
  */
 public class StockProfit {
     public static void main(String[] args) {
-        int [] arr = {7,1,5,3,6,4};
-        System.out.println(ans(arr)); 
+        int[] arr = {7, 1, 5, 3, 6, 4};
+        System.out.println(maxProfit(arr)); 
     }
 
-    static int ans(int [] arr){
-        int profit = 0;
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = i+1; j < arr.length; j++) {
-                if (arr[i]<arr[j] && (arr[j]-arr[i]) > profit) {
-                    profit = arr[j]-arr[i];
-                }
+    static int maxProfit(int[] prices) {
+        if (prices == null || prices.length <= 1) {
+            return 0;
+        }
+        
+        int minPrice = prices[0];
+        int maxProfit = 0;
+        
+        for (int i = 1; i < prices.length; i++) {
+            if (prices[i] < minPrice) {
+                minPrice = prices[i];
+            } else if (prices[i] - minPrice > maxProfit) {
+                maxProfit = prices[i] - minPrice;
             }
         }
-        return profit;
+        
+        return maxProfit;
     }
 }
